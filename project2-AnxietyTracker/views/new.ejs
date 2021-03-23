@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include ('./partials/head.ejs') %>
+  </head>
+  <body>
+    <h1>Add New Anxiety Episode</h1>
+    <button type="button"><a href="/anxietytracker">Home</a></button>
+    <form class="form" action="/anxietytracker" method="post">
+      <label for="date">Date</label>
+      <input type="date" name="date" id='date'>
+      <br>
+      <label for="trigger">Trigger</label>
+      <input type="text" name="trigger" id="trigger">
+      <br>
+      Trigger Type:
+      <br>
+
+      <input type="radio" name="situation" id="situation">
+      <label for="situation">Situation</label>
+
+      <input type="radio" name="thought" id="thought">
+      <label for="thought">Thought</label>
+
+      <input type="radio" name="physical sensation" id="physical sensation">
+      <label for="physical sensation">Physical Sensation</label>
+
+      <input type="radio" name="event" id="event">
+      <label for="event">Event</label>
+
+      <input type="radio" name="expectation" id="expectation">
+      <label for="expectation">Expectation</label>
+      <br>
+      <label for="intensity">Intensity</label>
+      <input type="range" name="intensity" id="intensity" value="50" min="1" max="100">
+      <br>
+      <label for="thoughts">Thoughts:</label>
+      <input type="text" name="thoughts" id="thoughts"><br>
+      <input type="submit" name="submit" value="Add">
+
+
+
+    </form>
+
+  </body>
+</html>

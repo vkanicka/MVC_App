@@ -1,0 +1,31 @@
+body {
+  background-color: lightblue;
+  font-family: 'Arima Madurai', cursive;
+  display: flex;
+  flex-direction: column;
+}
+
+li {
+  display: flex;
+  justify-content: space-around;
+  padding: 1% 10%;
+  width: 50vw;
+}
+
+.form {
+  margin: 50px;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 20px;
+
+}
+
+label {
+  /* float: left; */
+  padding-right: 10px;
+}
+
+input {
+  /* float: right; */
+}
