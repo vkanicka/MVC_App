@@ -2,6 +2,7 @@
   "name": "MVC_App",
   "version": "1.0.0",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "engines": {
@@ -9,10 +10,6 @@
   },
   "description": "• Concept \t\t○ User can use app to track anxiety episodes and help change thoughts",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vkanicka/MVC_App.git"
@@ -28,6 +25,7 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
-    "method-override": "^3.0.0"
+    "method-override": "^3.0.0",
+    "mongoose": "^5.12.2"
   }
 }
