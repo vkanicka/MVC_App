@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include ('./partials/head.ejs') %>
+  </head>
+  <body>
+    <h1>Edit Anxiety Episode</h1>
+    <button type="button"><a href="/anxietytracker">Home</a></button>
+    <form class="form" action="/anxietytracker/<%=id%>?_method=PUT" method="POST">
+      <label for="date">Date</label>
+      <input type="date" name="date" id='date' value=<%=anxiety.date%>>
+      <br>
+      <label for="trigger">Trigger</label>
+      <input type="text" name="trigger" id="trigger" value="<%=anxiety.trigger%>">
+      <br>
+      Trigger Type:
+      <br>
+
+      <% triggerTypes = ['situation','thought','physical sensation','event','expectation'] %>
+      <% triggerTypes.forEach ((trigger, index) => { %>
+        <input type="radio" name= "triggerType" id="<%=trigger%>">
+        <label for="<%=trigger%>"><%=trigger%></label>
+      <% }) %>
+      <br>
+      <label for="intensity">Intensity</label>
+      <input type="range" name="intensity" id="intensity" value="50" min="1" max="100" value='<%=anxiety.intensity%>'>
+      <br>
+      <label for="thoughts">Thoughts:</label>
+      <input type="text" name="thoughts" id="thoughts" value='<%=anxiety.thoughts%>'><br>
+      <input type="submit" name="submit" value="Submit">
+
+
+
+    </form>
+
+  </body>
+</html>

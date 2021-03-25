@@ -18,21 +18,29 @@ app.use(methodOverride('_method'))
 const anxieties = []
 
 // index route
-app.get('/anxietytracker/', (req,res)=>{
+app.get('/anxietytracker', (req,res)=>{
   res.render('index.ejs', {
     anxieties: anxieties,
     tabTitle: 'Home'
   })
 })
 
-app.post('/anxietytracker/', (req,res)=>{
+app.post('/anxietytracker', (req,res)=>{
   p(req.body)
+  let triggerTypes = ['situation','thought','physica sensation','event','expectation']
+  triggerTypes.forEach((trigger,index) => {
+    if (req.body.triggerType === trigger) {trigger++}
+  })
+
+  p(`You selected ${req.body.triggerType}`)
+
+
   anxieties.push(req.body)
   res.redirect('/anxietytracker/')
 })
 
 // new route
-app.get('/anxietytracker/new/', (req,res)=>{
+app.get('/anxietytracker/new', (req,res)=>{
   res.render('new.ejs', {
     tabTitle: 'Add New'
   })
@@ -41,15 +49,21 @@ app.get('/anxietytracker/new/', (req,res)=>{
 
 
 // edit route
-app.get('/anxietytracker/edit/:id/', (req,res)=>{
+app.get('/anxietytracker/:id/edit', (req,res)=>{
   res.render('edit.ejs', {
     anxiety: anxieties[req.params.id],
-    tabTitle: `Edit ${anxieties[req.params.id].trigger}`
+    id: req.params.id,
+    tabTitle: `Edit`
   })
 })
 
+app.put('/anxietytracker/:id', (req,res) => {
+  anxieties[req.params.id] = req.body
+  res.redirect('/anxietytracker')
+})
+
 // show route
-app.get('/anxietytracker/:id/', (req,res)=>{
+app.get('/anxietytracker/:id', (req,res)=>{
   res.render('show.ejs', {
     anxiety: anxieties[req.params.id],
     tabTitle: anxieties[req.params.id].trigger
@@ -59,7 +73,7 @@ app.get('/anxietytracker/:id/', (req,res)=>{
 // delete route
 app.delete('/anxietytracker/:id', (req, res)=>{
   anxieties.splice(req.params.id, 1)
-  res.redirect('/anxietytracker/')
+  res.redirect('/anxietytracker')
 })
 
 
