@@ -1,6 +1,12 @@
 {
   "name": "MVC_App",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "14.3.0"
+  },
   "description": "• Concept \t\t○ User can use app to track anxiety episodes and help change thoughts",
   "main": "server.js",
   "scripts": {
@@ -19,6 +25,7 @@
   },
   "homepage": "https://github.com/vkanicka/MVC_App#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "method-override": "^3.0.0"

@@ -4,7 +4,16 @@ const p = (x) => {console.log(x)}
 // server setup
 const express = require('express')
 const app = express()
-const PORT = 3000
+const mongoose = require ('mongoose')
+
+require('dotenv').config()
+const PORT = process.env.PORT
+const mongodbURI = process.env.MONGODBURI
+
+// Connect to Mongo
+mongoose.connect(mongodbURI ,  { useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => console.log("Database Connected Successfully", mongodbURI))
+.catch(err => console.log(err))
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -12,6 +21,7 @@ app.use(express.static('public'))
 
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
+
 
 // const anxieties = require('./models/anxieties.js')
 
