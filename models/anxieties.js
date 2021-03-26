@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
-const {Schema, model} = mongoose;
+// const {Schema, model} = mongoose;
+const Schema = mongoose.Schema
 
-const anxSchema = new Anx ({
+const anxSchema = new Schema ({
   date: {type: Date, required: true},
   trigger: {type: String, required:true},
   triggerType: {type: String, possibleValues: ['situation','thought','physical sensation','event','expectation']},
@@ -10,4 +11,6 @@ const anxSchema = new Anx ({
 
 })
 
-module.exports = anxSchema
+const Anx = mongoose.model('Anxiety', anxSchema)
+
+module.exports = Anx
