@@ -34,38 +34,38 @@ app.use(express.static('public'))
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
-// const anxieties = [
-//   {
-//     date: '3/25/2021',
-//     trigger: 'Project deadline',
-//     triggerType: 'thought',
-//     intensity: 60,
-//     thoughts: "What if I don't finish in time?",
-//   },
-//   {
-//     date: '3/24/2021',
-//     trigger: 'Puppy research',
-//     triggerType: 'expectation',
-//     intensity: 100,
-//     thoughts: "What if all the puppies in Texas get adopted before I can find them? What if I have to wait a year for a puppy?",
-//   },
-//   {
-//     date: '3/23/2021',
-//     trigger: 'Slept through alarm',
-//     triggerType: 'event',
-//     intensity: 25,
-//     thoughts: "I am going to be too tired my first meeting to be productive and everyone will be mad at me.",
-//   }
-// ]
-//
-// AnxSchema.create(anxieties, (error, anxieties) => {
-//   if (error) {
-//     p(error)
-//   } else {
-//     p(anxieties)
-//   }
-//
-// })
+const anxieties = [
+  {
+    date: '3/25/2021',
+    trigger: 'Project deadline',
+    triggerType: 'thought',
+    intensity: 60,
+    thoughts: "What if I don't finish in time?",
+  },
+  {
+    date: '3/24/2021',
+    trigger: 'Puppy research',
+    triggerType: 'expectation',
+    intensity: 100,
+    thoughts: "What if all the puppies in Texas get adopted before I can find them? What if I have to wait a year for a puppy?",
+  },
+  {
+    date: '3/23/2021',
+    trigger: 'Slept through alarm',
+    triggerType: 'event',
+    intensity: 25,
+    thoughts: "I am going to be too tired my first meeting to be productive and everyone will be mad at me.",
+  }
+]
+
+AnxSchema.create(anxieties, (error, anxieties) => {
+  if (error) {
+    p(error)
+  } else {
+    p(anxieties)
+  }
+
+})
 
 
 // index route
