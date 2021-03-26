@@ -4,18 +4,27 @@ const p = (x) => {console.log(x)}
 // server setup
 const express = require('express')
 const app = express()
+require('dotenv').config()
+// Port
+const PORT = process.env.PORT
+
 const mongoose = require ('mongoose')
 const AnxSchema = require('./models/anxieties.js')
 
 
-require('dotenv').config()
-const PORT = process.env.PORT
-const mongoURI = process.env.MONGODBURI
-const db = mongoose.connection
+
+
+//
+
+// Database
+const mongodbURI = process.env.MONGODBURI
+
+
+// const db = mongoose.connection
 
 // Connect to Mongo
-mongoose.connect(mongoURI ,  { useNewUrlParser: true, useUnifiedTopology: true})
-.then(() => p("Database Connected Successfully", mongoURI))
+mongoose.connect(mongodbURI ,  { useNewUrlParser: true, useUnifiedTopology: true})
+.then(() => p("Database Connected Successfully", mongodbURI))
 .catch(err => p(err))
 
 app.use(express.json())
@@ -53,15 +62,14 @@ AnxSchema.create(anxieties, (error, anxieties) => {
   if (error) {
     p(error)
   } else {
-    // p(anxieties)
+    p(anxieties)
   }
-  db.close()
+
 })
 
 
 // index route
 app.get('/anxietytracker', (req,res)=>{
-  p(anxieties)
   res.render('index.ejs', {
     anxieties: anxieties,
     tabTitle: 'Home'
@@ -69,7 +77,7 @@ app.get('/anxietytracker', (req,res)=>{
 })
 
 app.post('/anxietytracker', (req,res)=>{
-  p(req.body)
+  // p(req.body)
   let triggerTypes = ['situation','thought','physica sensation','event','expectation']
   triggerTypes.forEach((trigger,index) => {
     if (req.body.triggerType === trigger) {trigger++}

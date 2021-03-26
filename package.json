@@ -2,11 +2,10 @@
   "name": "MVC_App",
   "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
   "engines": {
-    "node": "14.3.0"
+    "node": "15.4.0"
   },
   "description": "• Concept \t\t○ User can use app to track anxiety episodes and help change thoughts",
   "main": "server.js",
