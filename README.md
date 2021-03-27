@@ -1,5 +1,7 @@
 # MVC_App
 
+https://immense-earth-87357.herokuapp.com/anxietytracker/
+
 	• Concept
 		○ User can use app to track anxiety episodes and help change thoughts
 		
@@ -47,6 +49,9 @@ Delete	/anxietytracker/:id	DELETE	Delete a particular anxiety episode, then redi
 ![image](https://user-images.githubusercontent.com/37551471/112707766-bf81ab80-8e7b-11eb-9a98-065c57d068da.png)
 
 
+technologies used: javascript, express, ejs, mongo, mongoose, 
+the approach was taken: started with basic routes and basic model. once finished started implementing review feature to make app more functional to user. css can come later for this one.
+unsolved problems + stretch goals: radio buttons, date time formatting, check if form empty, fully build out form into separate pages with next and previous buttons for each section, animate form moving on next/previous and button selection, user login with public/private options, use of tables, trend tracking, graph over time, log filtering feature
 
 
 
