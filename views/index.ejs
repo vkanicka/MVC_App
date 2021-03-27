@@ -6,17 +6,17 @@
   <body>
     <h1>Anxiety Tracker</h1>
     <button type="button" name="button"><a href="/anxietytracker/new">Add New Anxiety Episode</a></button>
-    <h2>These Episodes:</h2>
+    <h2>Anxiety Episodes:</h2>
     <ul>
 
     <% for (let i=0; i<anxieties.length; i++) { %>
       <li> <%=anxieties[i].date%>:
-        <a href="/anxietytracker/<%=i%>"><%=anxieties[i].trigger%></a>
+        <a href="/anxietytracker/<%=anxieties[i].id%>"><%=anxieties[i].trigger%></a>
         |
         <%=anxieties[i].intensity%>
-        <button type="button" name="button"><a href="/anxietytracker/<%=i%>/edit">Edit</a></button>
+        <button type="button" name="button"><a href="/anxietytracker/<%=anxieties[i].id; %>/edit">Edit</a></button>
 
-      <form action="/anxietytracker/<%= i %>?_method=DELETE" method="POST">
+      <form action="/anxietytracker/<%=anxieties[i].id%>?_method=DELETE" method="POST">
       <input type="submit" name="" value="DELETE">
       </form>
       </li>

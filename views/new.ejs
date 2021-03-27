@@ -17,7 +17,13 @@
       Trigger Type:
       <br>
 
-      <input type="radio" name="situation"
+      <% let triggerTypes = ['situation','thought','physical sensation','event','expectation'] %>
+      <% triggerTypes.forEach ((trigger, index) => { %>
+        <input type="radio" name= "triggerType" id="<%=trigger%>">
+        <label for="<%=trigger%>"><%=trigger%></label>
+      <% }) %>
+
+      <!-- <input type="radio" name="situation"
       id="situation">
       <label for="situation">Situation</label>
 
@@ -28,10 +34,9 @@
       <label for="physical sensation">Physical Sensation</label>
 
       <input type="radio" name="event" id="event">
-      <label for="event">Event</label>
+      <label for="event">Event</label> -->
 
-      <input type="radio" name="expectation" id="expectation">
-      <label for="expectation">Expectation</label>
+
       <br>
       <label for="intensity">Intensity</label>
       <input type="range" name="intensity" id="intensity" value="50" min="1" max="100">

@@ -9,7 +9,7 @@ require('dotenv').config()
 const PORT = process.env.PORT
 
 const mongoose = require ('mongoose')
-const AnxSchema = require('./models/anxieties.js')
+const Anxiety = require('./models/anxieties.js')
 
 
 
@@ -20,12 +20,20 @@ const AnxSchema = require('./models/anxieties.js')
 const mongodbURI = process.env.MONGODBURI
 
 
-// const db = mongoose.connection
+const db = mongoose.connection
 
 // Connect to Mongo
-mongoose.connect(mongodbURI ,  { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(mongodbURI ,  {
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 .then(() => p("Database Connected Successfully", mongodbURI))
 .catch(err => p(err))
+
+db.on('error', (err)=>{console.log('ERROR: ', err.message)})
+db.on('connected', (err)=>{console.log('mongo connected')})
+db.on('disconnected', (err)=>{console.log('mongo disconnected')})
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -33,6 +41,7 @@ app.use(express.static('public'))
 
 const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
+
 
 const anxieties = [
   {
@@ -58,36 +67,34 @@ const anxieties = [
   }
 ]
 
-AnxSchema.create(anxieties, (error, anxieties) => {
-  if (error) {
-    p(error)
-  } else {
-    p(anxieties)
-  }
 
-})
 
 
 // index route
-app.get('/anxietytracker', (req,res)=>{
-  res.render('index.ejs', {
-    anxieties: anxieties,
-    tabTitle: 'Home'
+app.get('/anxietytracker', (req,res, next)=>{
+  Anxiety.find({}, (error, foundAnxieties) => {
+    p(foundAnxieties)
+    if(error) {
+      p(error);
+      next(error)
+    } else {
+      res.render('index.ejs', {
+        tabTitle: 'Home',
+        anxieties: foundAnxieties
+      })
+    }
   })
 })
 
-app.post('/anxietytracker', (req,res)=>{
-  // p(req.body)
-  let triggerTypes = ['situation','thought','physica sensation','event','expectation']
-  triggerTypes.forEach((trigger,index) => {
-    if (req.body.triggerType === trigger) {trigger++}
+app.post('/anxietytracker/', (req,res)=>{
+  Anxiety.create(req.body, (error, createdAnxiety) => {
+    if (error) {
+      p(error);
+      res.send(error)
+    } else {
+      res.redirect('/anxietytracker');
+    }
   })
-
-  p(`You selected ${req.body.triggerType}`)
-
-
-  anxieties.push(req.body)
-  res.redirect('/anxietytracker/')
 })
 
 // new route
@@ -101,31 +108,61 @@ app.get('/anxietytracker/new', (req,res)=>{
 
 // edit route
 app.get('/anxietytracker/:id/edit', (req,res)=>{
-  res.render('edit.ejs', {
-    anxiety: anxieties[req.params.id],
-    id: req.params.id,
-    tabTitle: `Edit`
+  Anxiety.findById(req.params.id, (error, foundAnxiety)=>{
+    if (error) {
+      p(error);
+      next(error)
+    } else {
+      res.render(
+        'edit.ejs', {
+          anxiety: foundAnxiety,
+          tabTitle: 'Edit'
+        }
+      )
+    }
   })
 })
 
 app.put('/anxietytracker/:id', (req,res) => {
-  anxieties[req.params.id] = req.body
-  res.redirect('/anxietytracker')
-})
-
-// show route
-app.get('/anxietytracker/:id', (req,res)=>{
-  res.render('show.ejs', {
-    anxiety: anxieties[req.params.id],
-    tabTitle: anxieties[req.params.id].trigger
+  Anxiety.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedModel)=>{
+    if (error) {
+      p(error);
+      next(error)
+    } else {
+      res.redirect('/anxietytracker')
+    }
   })
 })
 
+
+
 // delete route
 app.delete('/anxietytracker/:id', (req, res)=>{
-  anxieties.splice(req.params.id, 1)
-  res.redirect('/anxietytracker')
+  Anxiety.findByIdAndRemove(req.params.id, (error, anxiety) =>{
+    if (error) {
+      p(error);
+      next(error)
+    } else {
+      res.redirect('/anxietytracker')
+    }
+  })
 })
+
+
+
+app.get('/anxietytracker/:id', (req, res)=>{
+    Anxiety.findById(req.params.id, (error, foundAnxiety)=>{
+      if (error) {
+        p(error);
+        next(error)
+      } else {
+        res.render('show.ejs', {
+            anxiety:foundAnxiety,
+            tabTitle: foundAnxiety.trigger
+        });
+      }
+    });
+});
 
 
 // listen to port
