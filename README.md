@@ -42,6 +42,10 @@ Delete	/anxietytracker/:id	DELETE	Delete a particular anxiety episode, then redi
     
 ![image](https://user-images.githubusercontent.com/37551471/112231596-0023bf80-8c05-11eb-9231-2f3e8f440493.png)
 
+![image](https://user-images.githubusercontent.com/37551471/112707749-9a8d3880-8e7b-11eb-908d-f4df1b3fa403.png)
+
+
+
 
 
 
