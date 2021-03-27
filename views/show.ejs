@@ -4,17 +4,23 @@
     <%- include ('./partials/head.ejs') %>
   </head>
   <body>
-    <h1><%=anxiety.trigger%></h1>
 
-    <button type="button" name="button"><a href="/anxietytracker">Home</a></button>
+      <h1><%=anxiety.trigger%></h1>
 
-    <ul>
-      <li>Date: <%=anxiety.date%></li>
-      <li>Trigger: <%=anxiety.trigger%></li>
-      <li>Trigger Type: <%=anxiety.triggerType%></li> 
-      <li>Intensity: <%=anxiety.intensity%></li>
-      <li>Thoughts: <%=anxiety.thoughts%></li>
-    </ul>
+      <button type="button" name="button"><a href="/anxietytracker">Home</a></button>
+
+      <div class="container">
+
+      <ul>
+        <li>Date: <%=anxiety.date%></li>
+        <li>Trigger: <%=anxiety.trigger%></li>
+        <li>Trigger Type: <%=anxiety.triggerType%></li>
+        <li>Intensity: <%=anxiety.intensity%></li>
+        <li>Thoughts: <%=anxiety.thoughts%></li>
+      </ul>
+
+    </div>
+
 
   </body>
 </html>

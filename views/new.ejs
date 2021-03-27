@@ -12,7 +12,9 @@
       <input type="date" name="date" id='date'>
       <br>
       <label for="trigger">Trigger</label>
-      <input type="text" name="trigger" id="trigger">
+      <textarea name="trigger" id="trigger" rows="1" cols="65"></textarea>
+      <!-- <label for="trigger">Trigger</label>
+      <input type="text" name="trigger" id="trigger"> -->
       <br>
       Trigger Type:
       <br>
@@ -23,26 +25,17 @@
         <label for="<%=trigger%>"><%=trigger%></label>
       <% }) %>
 
-      <!-- <input type="radio" name="situation"
-      id="situation">
-      <label for="situation">Situation</label>
-
-      <input type="radio" name="thought" id="thought">
-      <label for="thought">Thought</label>
-
-      <input type="radio" name="physical sensation" id="physical sensation">
-      <label for="physical sensation">Physical Sensation</label>
-
-      <input type="radio" name="event" id="event">
-      <label for="event">Event</label> -->
-
 
       <br>
       <label for="intensity">Intensity</label>
       <input type="range" name="intensity" id="intensity" value="50" min="1" max="100">
       <br>
       <label for="thoughts">Thoughts:</label>
-      <input type="text" name="thoughts" id="thoughts"><br>
+      <!-- <input type="text" name="thoughtTitle"> -->
+      <br>
+      <textarea name="thoughts" id="thoughts" rows="5" cols="75" placeholder="List thoughts here..."></textarea>
+      <br>
+
       <input type="submit" value="Add">
 
 

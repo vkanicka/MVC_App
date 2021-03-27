@@ -10,10 +10,22 @@ li {
   justify-content: space-around;
   padding: 1% 10%;
   width: 50vw;
+
+}
+
+.container {
+  display: flex;
+  float: left;
+  margin: 10px;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: 15px;
+
 }
 
 .form {
-  margin: 50px;
+  margin: 20px;
   background-color: lightgray;
   border-radius: 20px;
   padding: 10px;

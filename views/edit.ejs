@@ -8,16 +8,19 @@
 
     <button type="button"><a href="/anxietytracker">Home</a></button>
 
-    <form action='/anxietytracker/<%=anxiety.id%>?_method=PUT' method="POST">
+    <form class='form' action='/anxietytracker/<%=anxiety.id%>?_method=PUT' method="POST">
 
-      <label for="date">Date</label>
+      <label for="date"><strong>Date</strong></label>
       <input type="date" name="date" id='date' value='<%=anxiety.date%>'>
       <br>
-      <label for="trigger">Trigger</label>
-      <input type="text" name="trigger" id="trigger" value="<%=anxiety.trigger%>">
+
+      <label for="trigger"><strong>Trigger</strong></label>
+      <textarea name="trigger" id="trigger" rows="1" cols="65"><%=anxiety.trigger%></textarea>
+
+      <!-- <input type="text" name="trigger" id="trigger" value="<%=anxiety.trigger%>"> -->
       <br>
-      Trigger Type:
-      <br>
+      <strong>Trigger Type:</strong>
+      <!-- <br> -->
 
       <% let triggerTypes = ['situation','thought','physical sensation','event','expectation'] %>
       <% triggerTypes.forEach ((trigger, index) => { %>
@@ -25,13 +28,34 @@
         <label for="<%=trigger%>"><%=trigger%></label>
       <% }) %>
       <br>
-      <label for="intensity">Intensity</label>
-      <input type="range" name="intensity" id="intensity" min="1" max="100" value='<%=anxiety.intensity%>'>
+      <label for="intensity"><strong>Intensity</strong></label>
+      <input type="range" name="intensity" id="intensity" min="2" max="100" value='<%=anxiety.intensity%>'>
       <br>
-      <label for="thoughts">Thoughts:</label>
-      <input type="text" name="thoughts" id="thoughts" value='<%=anxiety.thoughts%>'><br>
+      <label for="thoughts"><strong>Thoughts:</strong></label>
+      <!-- <input type="text" name="thoughtTitle"> -->
+      <br>
+      <textarea name="thoughts" id="thoughts" rows="3" cols="100"><%=anxiety.thoughts%></textarea>
+      <br>
+      <!-- <label for="thoughts">Thoughts:</label>
+      <input type="text" name="thoughts" id="thoughts" value='<%=anxiety.thoughts%>'><br> -->
+
+
+
+      Thinking Errors:
+      <br>
+      <% thinkingErrors.forEach((thinkingError,index) => { %>
+        <input type="checkbox" name="<%=thinkingError.error%>" value="" id="<%=thinkingError.error%>">
+        <label for="<%=thinkingError.error%>"><strong><%=thinkingError.error%></strong>: <%=thinkingError.description%> </label><br>
+      <% })%>
+      <label for="reflection">Reflection:</label>
+      <br>
+      <textarea name="reflection" id="reflection" rows="5" cols="100" placeholder="Try reframing thoughts here..."></textarea>
+
+
+
+      <br>
       <input type="submit" name="submit" value="Submit">
- 
+
     </form>
 
   </body>

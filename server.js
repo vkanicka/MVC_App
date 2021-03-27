@@ -10,6 +10,7 @@ const PORT = process.env.PORT
 
 const mongoose = require ('mongoose')
 const Anxiety = require('./models/anxieties.js')
+const thinkingErrors = require('./models/thinkingErrors.js')
 
 
 
@@ -105,7 +106,8 @@ app.get('/anxietytracker/new', (req,res)=>{
 })
 
 
- 
+
+
 // edit route
 app.get('/anxietytracker/:id/edit', (req,res)=>{
   Anxiety.findById(req.params.id, (error, foundAnxiety)=>{
@@ -116,7 +118,8 @@ app.get('/anxietytracker/:id/edit', (req,res)=>{
       res.render(
         'edit.ejs', {
           anxiety: foundAnxiety,
-          tabTitle: 'Edit'
+          tabTitle: 'Edit',
+          thinkingErrors: thinkingErrors
         }
       )
     }
